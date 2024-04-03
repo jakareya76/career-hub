@@ -12,6 +12,8 @@ import JobDetails from "./components/JobDetails.jsx";
 import AuthProvider from "./context/AuthProvider.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import JobPrivateRoute from "./Routes/JobPrivateRoute.jsx";
+import AuthPrivateRoute from "./Routes/AuthPrivateRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,15 +27,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <AuthPrivateRoute>
+            <Login />
+          </AuthPrivateRoute>
+        ),
       },
       {
         path: "/sign-up",
-        element: <SignUp />,
+        element: (
+          <AuthPrivateRoute>
+            <SignUp />
+          </AuthPrivateRoute>
+        ),
       },
       {
         path: "/applied",
-        element: <AppliedJobsPage />,
+        element: (
+          <JobPrivateRoute>
+            <AppliedJobsPage />
+          </JobPrivateRoute>
+        ),
         loader: () => fetch("/jobs.json"),
       },
       {

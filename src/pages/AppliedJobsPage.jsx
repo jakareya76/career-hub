@@ -19,8 +19,6 @@ const AppliedJobsPage = () => {
     }
   }, []);
 
-  console.log(appliedJobsList);
-
   return (
     <>
       <div className="p-16 bg-zinc-200">

@@ -1,4 +1,27 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      await loginUser(email, password);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen hero bg-base-200">
       <div className="flex-col hero-content">
@@ -6,7 +29,7 @@ const Login = () => {
           <h1 className="text-3xl font-bold">Login now!</h1>
         </div>
         <div className="w-full max-w-sm shadow-2xl card shrink-0 bg-base-100">
-          <form className="card-body">
+          <form className="card-body" onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
