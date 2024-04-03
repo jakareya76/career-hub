@@ -10,6 +10,8 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import JobDetails from "./components/JobDetails.jsx";
 
 import AuthProvider from "./context/AuthProvider.jsx";
+import Login from "./pages/Login.jsx";
+import SignUp from "./pages/SignUp.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
       {
         path: "/applied",

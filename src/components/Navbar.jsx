@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 
 const Navbar = () => {
+  const { user, signInUserWithGoogle, signOutUser } = useContext(AuthContext);
+
   return (
     <nav className="bg-blue-50 dark:bg-base-200">
       <div className="container mx-auto navbar">
@@ -29,9 +33,20 @@ const Navbar = () => {
               <li>
                 <NavLink to="/">Home</NavLink>
               </li>
-              <li>
-                <NavLink to="/applied">Applied Jobs</NavLink>
-              </li>
+              {user ? (
+                <li>
+                  <NavLink to="/applied">Applied Jobs</NavLink>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <NavLink to="/login">Login</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/sign-up">Sign Up</NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <a className="text-xl btn btn-ghost">CareerHub</a>
@@ -41,13 +56,38 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            <li>
-              <NavLink to="/applied">Applied Jobs</NavLink>
-            </li>
+            {user ? (
+              <li>
+                <NavLink to="/applied">Applied Jobs</NavLink>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/sign-up">Sign Up</NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="text-white btn btn-primary">Start Applying</a>
+          {user ? (
+            <button
+              className="text-white btn btn-primary"
+              onClick={() => signOutUser()}
+            >
+              Sign Out
+            </button>
+          ) : (
+            <button
+              className="text-white btn btn-primary"
+              onClick={() => signInUserWithGoogle()}
+            >
+              Sign In With Google
+            </button>
+          )}
         </div>
       </div>
     </nav>

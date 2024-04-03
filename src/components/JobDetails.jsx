@@ -1,7 +1,11 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import { saveJobApplication } from "../utility/localstorage";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const JobDetails = () => {
+  const { user } = useContext(AuthContext);
+
   const jobs = useLoaderData();
 
   const { id } = useParams();
@@ -23,34 +27,40 @@ const JobDetails = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-center my-8 text-2xl font-semibold">Job Details</h1>
+      <h1 className="my-8 text-2xl font-semibold text-center">Job Details</h1>
       <div className="grid gap-5 m-8 md:grid-cols-4">
-        <div className="p-8 border grid gap-4 rounded col-span-3">
+        <div className="grid col-span-3 gap-4 p-8 border rounded">
           <p className="font-semibold">
             Job Description :{" "}
-            <span className="text-zinc-500 font-normal">{job_description}</span>
+            <span className="font-normal text-zinc-500">{job_description}</span>
           </p>
           <p className="font-semibold">
             Job Responsibility :{" "}
-            <span className="text-zinc-500 font-normal">
+            <span className="font-normal text-zinc-500">
               {job_responsibility}
             </span>
           </p>
           <p className="font-semibold">
             Educational Requirements :{" "}
-            <span className="text-zinc-500 font-normal">
+            <span className="font-normal text-zinc-500">
               {educational_requirements}
             </span>
           </p>
           <p className="font-semibold">
             Experiences: :{" "}
-            <span className="text-zinc-500 font-normal">{experiences}</span>
+            <span className="font-normal text-zinc-500">{experiences}</span>
           </p>
         </div>
-        <div className="p-5 border rounded col-span-1">
-          <button className="btn w-full  btn-primary" onClick={handleApplyJob}>
-            Apply Now
-          </button>
+        <div className="col-span-1 p-5 border rounded">
+          {user ? (
+            <button className="w-full btn btn-primary" onClick={handleApplyJob}>
+              Apply Now
+            </button>
+          ) : (
+            <Link to="/sing-up" className="w-full btn btn-primary">
+              Sign Up To Applay
+            </Link>
+          )}
         </div>
       </div>
     </div>

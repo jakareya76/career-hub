@@ -30,7 +30,7 @@ const AppliedJobsPage = () => {
         <div className="grid gap-8 mt-20">
           {appliedJobsList.map((item) => {
             return (
-              <div className="flex p-5 border rounded-xl">
+              <div key={item.id} className="flex p-5 border rounded-xl">
                 <div className="flex items-center justify-center p-16 bg-zinc-100">
                   <img
                     src={item.logo}
