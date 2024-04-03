@@ -5,6 +5,7 @@ import Job from "./Job";
 
 const FeatureJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const [dataLength, setDataLength] = useState(4);
 
   useEffect(() => {
     const getJobsData = async () => {
@@ -22,9 +23,21 @@ const FeatureJobs = () => {
       <SectionTitle title="Featured Jobs" />
 
       <div className="grid grid-cols-1 gap-6 mt-10 md:grid-cols-2">
-        {jobs.map((job) => {
+        {jobs.slice(0, dataLength).map((job) => {
           return <Job key={job.id} job={job} />;
         })}
+      </div>
+      <div
+        className={`flex items-center justify-center ${
+          dataLength === jobs.length && "hidden"
+        }`}
+      >
+        <button
+          onClick={() => setDataLength(6)}
+          className="btn btn-primary px-8 text-white mt-10"
+        >
+          Show All Jobs
+        </button>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import heroImage from "../assets/images/user.png";
 
 const Banner = () => {
   return (
-    <section className="hero bg-blue-50">
+    <section className="hero bg-blue-50 dark:bg-base-300">
       <div className="flex items-center justify-center flex-col lg:flex-row-reverse">
         <div className="lg:w-1/2">
           <img src={heroImage} />
