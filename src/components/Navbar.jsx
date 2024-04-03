@@ -3,13 +3,13 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav className="bg-blue-50 dark:bg-base-200">
-      <div className="navbar container mx-auto">
+      <div className="container mx-auto navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="w-5 h-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -32,28 +32,22 @@ const Navbar = () => {
               <li>
                 <NavLink to="/applied">Applied Jobs</NavLink>
               </li>
-              <li>
-                <NavLink to="/blogs">Blogs</NavLink>
-              </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">CareerHub</a>
+          <a className="text-xl btn btn-ghost">CareerHub</a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-4">
+        <div className="hidden navbar-center lg:flex">
+          <ul className="gap-4 px-1 menu menu-horizontal">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
               <NavLink to="/applied">Applied Jobs</NavLink>
             </li>
-            <li>
-              <NavLink to="/blogs">Blogs</NavLink>
-            </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn btn-primary text-white">Start Applying</a>
+          <a className="text-white btn btn-primary">Start Applying</a>
         </div>
       </div>
     </nav>
